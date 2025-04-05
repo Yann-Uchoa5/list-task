@@ -1,0 +1,33 @@
+<ion-content class="ion-padding">
+
+  <div class="login-container">
+    <div class="login-box">
+      <div class="logo">
+        <img src="/assets/images/logo.png" alt="logo" />
+      </div>
+      <form (ngSubmit)="register()">
+        <ion-input placeholder="Email" [(ngModel)]="email" name="email" type="email" required class="input-field">
+        </ion-input>
+
+        <ion-input placeholder="Senha" [(ngModel)]="password" name="password" type="password" required class="input-field">
+        </ion-input>
+
+        <ion-input placeholder="Confirmar Senha" [(ngModel)]="confirmPassword" name="confirmPassword" type="password" required class="input-field">
+        </ion-input>
+
+        <ion-button shape="round" expand="full" type="submit" class="login-button">
+          Cadastrar
+        </ion-button>
+
+        <div class="login-link">
+          <span>Já tem uma conta?</span>
+          <ion-button fill="clear" (click)="navigateToLogin()">
+            Entrar
+          </ion-button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ion-content>

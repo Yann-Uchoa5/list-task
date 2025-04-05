@@ -1,0 +1,20 @@
+/* Personalizando o menu */
+.main-menu {
+  --background: #f4f4f4;
+  --width: 250px;
+}
+
+/* Itens do menu */
+.item-menu {
+  --padding-start: 20px;
+}
+
+.title-menu {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Estilo do item de logout */
+.logout {
+  color: red;
+}

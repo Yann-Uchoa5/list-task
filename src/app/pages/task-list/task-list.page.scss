@@ -1,0 +1,147 @@
+/* Fundo do modal - escuro e translúcido */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fade-in 0.3s ease-in-out;
+}
+
+/* Estrutura do modal */
+.modal {
+  width: 90%;
+  min-height: 80%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0px 5px 15px rgba(63, 81, 181);
+  overflow: hidden;
+  animation: slide-down 0.3s ease-in-out;
+}
+.ion-padding {
+  height: 650px;
+  --background: #e8f0ff;
+}
+
+/* Conteúdo interno do modal */
+.modal-content {
+  padding: 0px;
+  z-index: 1001;
+}
+
+/* Efeito de fade-in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Efeito de deslizar para baixo */
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Botões */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+
+ion-fab-button {
+  --background: #213659;
+  --border-radius: 50%;
+  --box-shadow: 0px 4px 6px rgba(192, 22, 22, 0.3);
+}
+
+ion-icon {
+  font-size: 24px;
+}
+
+ion-list {
+  background-color: #e8f0ff;
+}
+ion-item {
+  margin: 6px;
+  --border: 2px solid black;
+  --border-radius: 5px;
+}
+
+.task-completa {
+  --background: #28a745 !important; // Azul ✅
+  color: white;
+}
+
+.task-expirada {
+  --background: #ff4d4d !important; // Vermelho 🔴
+  color: white;
+}
+
+.task-hoje {
+  --background: #ffa500 !important; // Laranja 🟠
+  color: white;
+}
+
+.task-amanha {
+  --background: #3838b0 !important; // Verde 🟢
+  color: white;
+}
+.container-list {
+  padding: 20px;
+  background-color: #e8f0ff;
+  height: 90%;
+  max-height: 400px; /* Altura máxima antes de ativar o scroll */
+  overflow-y: auto; /* Ativa o scroll vertical */
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+ion-button.delete {
+  --background: rgba(229, 73, 73, 0.944);
+  color: white;
+  --border-radius: 5px;
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+ion-button.botao {
+  --border-radius: 5px;
+}
+.cancelar {
+  --background: red;
+  color: white;
+}
+.task {
+  --box-shadow: 0px 4px 6px rgba(226, 0, 0, 0.342) !important;
+}
+.content-helcome {
+  img {
+    width: 50%;
+    height: 10%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  h1 {
+    color: #213659;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 0px 0px rgba(255, 255, 255, 0.2);
+  }
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
