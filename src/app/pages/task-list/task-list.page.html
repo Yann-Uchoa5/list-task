@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar title="Lista de Tarefas" />
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Modal para Adicionar/Editar -->
+  <div *ngIf="showForm" class="modal-overlay" (click)="toggleForm()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <ion-toolbar>
+        <ion-title>{{ editingTask ? 'Editar Tarefa' : 'Nova Tarefa' }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="toggleForm()">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-content class="ion-padding">
+        <ion-item fill="outline">
+          <ion-label position="floating">Título da Tarefa</ion-label>
+          <ion-input [(ngModel)]="newTaskTitle"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <!-- <ion-label position="floating">Data Final</ion-label> -->
+          <ion-datetime display-format="DD/MM/YYYY HH:mm" [(ngModel)]="finishTs"></ion-datetime>
+        </ion-item>
+
+        <div class="button-container">
+          <ion-button class="botao adicionar" (click)=" addTask()">
+            {{ editingTask ? 'Salvar' : 'Adicionar' }}
+          </ion-button>
+          <ion-button class="botao cancelar" (click)="toggleForm()">Cancelar</ion-button>
+        </div>
+      </ion-content>
+    </div>
+  </div>
+
+  <div class="content-helcome">
+    <img src="../../../assets/images/logo.png" alt="logo">
+    <h1 class="title">Tarefas</h1>
+  </div>
+  <!-- Lista de tarefas -->
+  <div class="container-list">
+    <ion-list>
+      <ion-item class="task" lines="none" *ngFor="let task of sortTasks(tasks | async)" [ngClass]="getTaskClass(task)" (click)="editTask(task)">
+        <ion-label>{{ task.title }} - {{ formatDisplayDate(task.finishTs) }}</ion-label>
+
+        <ion-checkbox slot="start" [(ngModel)]="task.completed" (ionChange)="toggleTaskStatus(task, $event.detail.checked)" (click)="$event.stopPropagation()"></ion-checkbox>
+
+        <ion-button class="delete" fill="clear" (click)="deleteTask(task.id); $event.stopPropagation()">
+          Excluir
+        </ion-button>
+      </ion-item>
+
+    </ion-list>
+
+  </div>
+
+  <!-- Botão Flutuante -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="toggleForm()">
+      <ion-icon [name]="showForm ? 'close' : 'add'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

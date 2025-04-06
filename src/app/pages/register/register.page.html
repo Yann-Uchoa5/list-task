@@ -1,0 +1,58 @@
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <div class="login-box">
+      <div class="logo">
+        <h1 class="app-title">Done!</h1> <!-- Substituí o <img> por texto estilizado -->
+      </div>
+      <form (ngSubmit)="register()">
+        <ion-item class="input-wrapper" lines="none">
+          <ion-input 
+            placeholder="Email" 
+            [(ngModel)]="email" 
+            name="email" 
+            type="email" 
+            required 
+            class="input-field">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="input-wrapper" lines="none">
+          <ion-input 
+            placeholder="Senha" 
+            [(ngModel)]="password" 
+            name="password" 
+            type="password" 
+            required 
+            class="input-field">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="input-wrapper" lines="none">
+          <ion-input 
+            placeholder="Confirmar Senha" 
+            [(ngModel)]="confirmPassword" 
+            name="confirmPassword" 
+            type="password" 
+            required 
+            class="input-field">
+          </ion-input>
+        </ion-item>
+
+        <ion-button 
+          shape="round" 
+          expand="full" 
+          type="submit" 
+          class="login-button">
+          Cadastrar
+        </ion-button>
+
+        <div class="login-link">
+          <span>Já tem uma conta?</span>
+          <ion-button fill="clear" (click)="navigateToLogin()">
+            Entrar
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,125 @@
+ion-content {
+  --background: linear-gradient(135deg, #e8f0ff 0%, #d1e0ff 100%); // Mesmo gradiente da tela de login
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+
+  .login-box {
+    background-color: #ffffff; // Fundo branco para consistência
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); // Sombra suave
+    width: 100%;
+    max-width: 400px; // Limite de largura
+    animation: fadeIn 0.5s ease-in-out; // Animação de entrada
+  }
+
+  .logo {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .app-title {
+      font-size: 48px; // Tamanho grande para destaque
+      font-family: 'Poppins', sans-serif; // Fonte moderna
+      font-weight: 700; // Negrito
+      color: #3f51b5; // Azul principal
+      letter-spacing: 2px; // Espaçamento elegante
+      text-transform: uppercase; // Maiúsculas
+      background: linear-gradient(90deg, #3f51b5, #4a66d6); // Gradiente no texto
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 5px rgba(63, 81, 181, 0.2); // Sombra sutil
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05); // Efeito de zoom
+      }
+    }
+  }
+
+  .input-wrapper {
+    --background: #f7f9fc; // Fundo claro para inputs
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); // Sombra leve
+    transition: all 0.3s ease;
+
+    &:focus-within {
+      --background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Destaque ao focar
+    }
+
+    ion-input {
+      --padding-start: 15px;
+      --padding-end: 15px;
+      --padding-top: 12px;
+      --padding-bottom: 12px;
+      color: #1a2b4a; // Cor escura para legibilidade
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .login-button {
+    --background: #3f51b5; // Azul profissional
+    --background-activated: #2c3e9c; // Cor ao clicar
+    --border-radius: 12px;
+    --color: #ffffff; // Texto branco, como na tela de login
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 12px 0;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      --background: #4a66d6; // Efeito hover
+      transform: translateY(-2px); // Elevação sutil
+    }
+  }
+
+  .login-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    span {
+      font-size: 14px;
+      color: #666; // Cinza suave
+      margin-right: 8px;
+    }
+
+    ion-button {
+      font-size: 14px;
+      color: #3f51b5; // Azul do tema
+      font-weight: 600;
+      --padding-start: 0;
+      --padding-end: 0;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #4a66d6; // Hover no link
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
