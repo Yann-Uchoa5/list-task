@@ -1,5 +1,6 @@
+<!-- HTML -->
 <ion-header>
-  <ion-toolbar title="Lista de Tarefas" />
+  <ion-toolbar title="Lista de Tarefas"></ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -17,17 +18,16 @@
 
       <ion-content class="ion-padding">
         <ion-item fill="outline">
-          <ion-label position="floating">Título da Tarefa</ion-label>
-          <ion-input [(ngModel)]="newTaskTitle"></ion-input>
+          <ion-label position="floating">Adiciona a sua Tarefa</ion-label>
+          <ion-input [(ngModel)]="newTaskTitle" class="titulo-tarefa-input"></ion-input>
         </ion-item>
 
         <ion-item>
-          <!-- <ion-label position="floating">Data Final</ion-label> -->
           <ion-datetime display-format="DD/MM/YYYY HH:mm" [(ngModel)]="finishTs"></ion-datetime>
         </ion-item>
 
         <div class="button-container">
-          <ion-button class="botao adicionar" (click)=" addTask()">
+          <ion-button class="botao adicionar" (click)="addTask()">
             {{ editingTask ? 'Salvar' : 'Adicionar' }}
           </ion-button>
           <ion-button class="botao cancelar" (click)="toggleForm()">Cancelar</ion-button>
@@ -36,10 +36,17 @@
     </div>
   </div>
 
+  <!-- Boas-vindas -->
   <div class="content-helcome">
-    <img src="../../../assets/images/logo.png" alt="logo">
+    <img src="../../../assets/images/task.png" alt="logo">
     <h1 class="title">Tarefas</h1>
+
+    <div class="welcome-box">
+      <h2>Bem-vindo ao <strong>Done </strong></h2>
+      <p>Organizar suas <strong>tarefas</strong> é o primeiro passo para ter mais produtividade e menos estresse no dia a dia. </p>
+    </div>
   </div>
+
   <!-- Lista de tarefas -->
   <div class="container-list">
     <ion-list>
@@ -52,9 +59,7 @@
           Excluir
         </ion-button>
       </ion-item>
-
     </ion-list>
-
   </div>
 
   <!-- Botão Flutuante -->

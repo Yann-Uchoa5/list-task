@@ -14,7 +14,7 @@ export class TaskListPage {
   showForm: boolean = false;
   newTaskTitle: string = '';
   finishTs: string = '';
-  editingTask: Task | null = null; // Indica se está editando uma tarefa
+  editingTask: Task | null = null;
 
   constructor(private taskService: TaskService) {
     this.tasks = this.taskService.getTasks();
@@ -59,11 +59,14 @@ export class TaskListPage {
   }
 
   formatDate(finishTs: string): Date {
-    return new Date(finishTs.replace(/_/g, '-')); // Ajusta o formato e converte para Date
+    if (!finishTs) return new Date(NaN); // evita erro se finishTs for vazio
+    return new Date(finishTs); // espera formato ISO (ex: "2025-04-07T10:00")
   }
 
   formatDisplayDate(finishTs: string): string {
     const data = this.formatDate(finishTs);
+    if (isNaN(data.getTime())) return 'Data inválida';
+
     const dia = data.getDate().toString().padStart(2, '0');
     const mes = (data.getMonth() + 1).toString().padStart(2, '0');
     const ano = data.getFullYear();
@@ -77,6 +80,8 @@ export class TaskListPage {
 
     const hoje = new Date();
     const prazo = this.formatDate(task.finishTs);
+    if (isNaN(prazo.getTime())) return ''; // evita erro
+
     const hojeSemHora = new Date(
       hoje.getFullYear(),
       hoje.getMonth(),
@@ -98,17 +103,18 @@ export class TaskListPage {
   }
 
   sortTasks(tasks: Task[] | null): Task[] {
-    if (!tasks) return []; // Se tasks for null, retorna um array vazio
+    if (!tasks) return [];
     return tasks.sort(
       (a, b) =>
         this.formatDate(a.finishTs).getTime() -
         this.formatDate(b.finishTs).getTime()
     );
   }
+
   toggleTaskStatus(task: Task, completed: boolean) {
-    task.completed = completed; // Atualiza localmente
+    task.completed = completed;
     this.taskService
-      .updateTaskStatus(task.id, completed) // Atualiza no Firebase
+      .updateTaskStatus(task.id, completed)
       .catch((err) => console.error('Erro ao atualizar status:', err));
   }
 }
