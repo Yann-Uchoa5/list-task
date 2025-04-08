@@ -59,8 +59,8 @@ export class TaskListPage {
   }
 
   formatDate(finishTs: string): Date {
-    if (!finishTs) return new Date(NaN); // evita erro se finishTs for vazio
-    return new Date(finishTs); // espera formato ISO (ex: "2025-04-07T10:00")
+    if (!finishTs) return new Date(NaN);
+    return new Date(finishTs);
   }
 
   formatDisplayDate(finishTs: string): string {
@@ -76,11 +76,11 @@ export class TaskListPage {
   }
 
   getTaskClass(task: Task): string {
-    if (task.completed) return 'task-completa'; // Azul ✅
+    if (task.completed) return 'task-completa';
 
     const hoje = new Date();
     const prazo = this.formatDate(task.finishTs);
-    if (isNaN(prazo.getTime())) return ''; // evita erro
+    if (isNaN(prazo.getTime())) return '';
 
     const hojeSemHora = new Date(
       hoje.getFullYear(),
@@ -95,9 +95,9 @@ export class TaskListPage {
     const diffDias =
       (prazoSemHora.getTime() - hojeSemHora.getTime()) / (1000 * 60 * 60 * 24);
 
-    if (diffDias < 0) return 'task-expirada'; // Vermelho 🔴
-    if (diffDias === 0) return 'task-hoje'; // Laranja 🟠
-    if (diffDias >= 1) return 'task-amanha'; // Verde 🟢
+    if (diffDias < 0) return 'task-expirada';
+    if (diffDias === 0) return 'task-hoje';
+    if (diffDias >= 1) return 'task-amanha';
 
     return '';
   }
@@ -116,5 +116,35 @@ export class TaskListPage {
     this.taskService
       .updateTaskStatus(task.id, completed)
       .catch((err) => console.error('Erro ao atualizar status:', err));
+    console.log('Checkbox alterada, completed:', completed);
+  }
+
+  mostrarMensagemMotivacional(isChecked: boolean): void {
+    if (!isChecked) return;
+
+    console.log('Iniciando mensagem motivacional');
+    const mensagens = [
+      'Muito bem!',
+      'Você é forte!',
+      'Parabéns!',
+      'Mandou bem!',
+    ];
+
+    const mensagem = mensagens[Math.floor(Math.random() * mensagens.length)];
+
+    const caixa = document.createElement('div');
+    caixa.className = 'floating-motivation';
+    caixa.innerHTML = `
+      <img src="/assets/images/taskCheck.png" alt="Ícone" style="width: 32px; height: 32px;">
+      <span>${mensagem} (Teste)</span>
+    `;
+
+    document.body.appendChild(caixa);
+    console.log('Caixa adicionada ao DOM:', caixa);
+
+    setTimeout(() => {
+      caixa.remove();
+      console.log('Caixa removida do DOM');
+    }, 3000);
   }
 }

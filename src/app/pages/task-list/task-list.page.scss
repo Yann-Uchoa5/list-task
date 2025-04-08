@@ -11,6 +11,31 @@
   to { transform: translateY(0); }
 }
 
+@keyframes float-up {
+  0% {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+// =====================
+// HEADER
+// =====================
+ion-header {
+  ion-toolbar {
+    --background: #3f51b5;
+    --color: white;
+
+    ion-button {
+      --color: white;
+    }
+  }
+}
+
 // =====================
 // OVERLAY / MODAL
 // =====================
@@ -88,10 +113,17 @@ ion-button {
   }
 
   &.delete {
-    --background: #e53935;
+    --background: #3f51b5;
     color: white;
     --border-radius: 6px;
     --box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      --background: #5c6bc0;
+      --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+      transform: scale(1.05);
+      transition: all 0.2s ease;
+    }
   }
 }
 
@@ -115,11 +147,11 @@ ion-item {
     &-completa {
       --background: #4caf50 !important;
       color: white;
-    }
 
-    &-expirada {
-      --background: #f44336 !important;
-      color: white;
+      ion-label {
+        color: #00e676 !important;
+        text-shadow: 0 0 4px rgba(0, 230, 118, 0.5);
+      }
     }
 
     &-hoje {
@@ -148,15 +180,15 @@ ion-item {
 // LABELS E INPUT
 // =====================
 ion-label {
-  color: black !important;
-  font-weight: 500;
-  font-size: 13px;
-  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease;
+  color: #1a1a1a !important; // Cor mais escura e forte (quase preto)
+  font-weight: 700; // Peso da fonte aumentado para "mais forte"
+  font-size: 14px; // Leve aumento no tamanho para destacar
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.2); // Sombra sutil para contraste
 
   &:hover {
-    color: #ffffff !important;
-    text-shadow: 0 0 6px #ffffff;
+    color: #ffffff !important; // Branco no hover
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5); // Brilho branco
+    transition: color 0.3s ease, text-shadow 0.3s ease; // Transição suave
   }
 }
 
@@ -172,42 +204,89 @@ ion-label {
   text-align: center;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #e6ebfa 0%, #f0f4ff 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(63, 81, 181, 0.15);
+  margin: 20px 10px;
 
   img {
-    width: 30%;
+    width: 35%;
     height: auto;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   h1 {
-    color: black;
-    font-size: 28px;
+    color: #3f51b5;
+    font-size: 32px;
     font-weight: bold;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .welcome-box {
-    background-color: #f0f4ff;
-    border: 1px solid #cbd5ff;
-    border-radius: 12px;
-    padding: 15px;
-    margin: 20px auto;
-    max-width: 85%;
-    box-shadow: 0 4px 8px rgba(63, 81, 181, 0.1);
+    background-color: #ffffff;
+    border: 2px solid #3f51b5;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 90%;
+    box-shadow: 0 6px 12px rgba(63, 81, 181, 0.2);
+    animation: fade-in 0.5s ease-in-out;
 
-    h2 {
+    .highlight-text {
       color: #3f51b5;
-      font-size: 20px;
-      margin-bottom: 8px;
+      text-shadow: 0 0 6px rgba(63, 81, 181, 0.8), 0 0 12px rgba(255, 255, 255, 0.6);
+      transition: text-shadow 0.3s ease;
     }
 
-    p {
-      color: #333;
-      font-size: 15px;
-      line-height: 1.4;
+    h2.highlight-text {
+      font-size: 24px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
+
+    p.highlight-text {
+      font-size: 16px;
+      line-height: 1.6;
+      font-style: italic;
+    }
+  }
+}
+
+// =====================
+// CAIXINHA MOTIVACIONAL
+// =====================
+.floating-motivation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 2px solid #3f51b5;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10000;
+  animation: fade-in 0.4s ease, slide-down 0.4s ease;
+  min-width: 200px;
+  min-height: 60px;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 16px;
+    color: #3f51b5;
   }
 }
